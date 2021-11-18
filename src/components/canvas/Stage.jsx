@@ -6,16 +6,16 @@ import TransformableText from './TransformableText';
 import TransformableImage from './TransformableImage';
 
 const CanvasStage = ({
-  stageRef, 
-  userName, 
-  guildName, 
-  frameImg, 
-  image, 
-  checked, 
+  stageRef,
+  userName,
+  guildName,
+  frameImg,
+  image,
+  checked,
   checkedGuild,
   bgColor,
   bgColorGuild,
-  fontFamily, 
+  fontFamily,
   fontColor,
   fontColorGuild,
   fontFamilyGuild,
@@ -61,19 +61,12 @@ const CanvasStage = ({
 
   const checkDeselect = () => {
     selectShape1(null);
+    selectShape(null);
   };
 
   return (
     <Stage ref={stageRef} width={350} height={350} x={0} style={{ margin: 'auto' }}>
       <Layer>
-        <Image
-          image={frameImg}
-          width={350}
-          height={350}
-          style={{ zIndex: '100', position: 'absolute' }}
-          onMouseDown={checkDeselect}
-          onTouchStart={checkDeselect}
-        />
         <Group
           clipX={imagePositionX}
           clipY={imagePositionY}
@@ -104,6 +97,8 @@ const CanvasStage = ({
               fontFamily={fontFamily}
               alignment={alignment}
               fontColor={fontColor}
+              onMouseDown={checkDeselect}
+              onTouchStart={checkDeselect}
               fontStyle='bold'
               fontSize={22}
               shapeProps={rect[0]}
@@ -126,6 +121,8 @@ const CanvasStage = ({
               fontFamily={fontFamilyGuild}
               alignment={alignment}
               fontColor={fontColorGuild}
+              onMouseDown={checkDeselect}
+              onTouchStart={checkDeselect}
               fontStyle='normal'
               fontSize={22}
               shapeProps={rect[1]}
@@ -141,6 +138,16 @@ const CanvasStage = ({
             />
           )}
         </Group>
+
+        <Image
+          image={frameImg}
+          width={350}
+          height={350}
+          style={{ zIndex: '100', position: 'absolute' }}
+          onMouseDown={checkDeselect}
+          onTouchStart={checkDeselect}
+          listening={false}
+        />
       </Layer>
     </Stage>
   );
